@@ -1,12 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
 import Card from "../Card";
+import { Product } from "@/types/product";
+import {config} from '@/constants/url';
 
 function CardList() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  //config.BASE_URL+config.endpoints.products this to get the url of endpoint API 
 
   useEffect(() => {
-    fetch("http://localhost:8080/products")
+    fetch(config.BASE_URL+config.endpoints.products)
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }, []);
@@ -22,6 +25,7 @@ function CardList() {
           imageUrl={product.imageUrl}
           category={product.category}
           metadata={product.metadata}
+          weight={product.weight}
         />
       ))}
     </div>
