@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
-import Card from "../Card";
 import { Product } from "@/types/product";
 import {config} from '@/constants/url';
+
+import Card from "../Card";
 
 function CardList() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -15,7 +16,7 @@ function CardList() {
   }, []);
 
   return (
-    <div className=" top-0 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10">
+    <div className=" max-w-max  top-0 grid  grid-cols-[1fr,1fr] sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10">
       {products.map((product) => (
         <Card
           key={product.id}
