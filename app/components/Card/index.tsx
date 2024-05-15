@@ -1,16 +1,16 @@
 import Image from "next/image";
-import vege from "@/public/products/cucumber.png";
+import { Product } from "@/types/product";
 
-function Card() {
+function Card({id, imageUrl, name, price, category, metadata}:Product) {
   return (
         <div className="flex flex-col shadow-md p-2 bg-[#f9f8f6] items-start">
         <div className=" flex items-center">
           <div>
-            <Image src={vege} className="object-cover mix-blend-multiply bg-transparent" />
+            <Image src={imageUrl} className="object-cover mix-blend-multiply bg-transparent" width={100} height={100} />
           </div>
         </div>
-        <h1 className=" font-bold text-2xl">$3.2</h1>
-        <div>Cucumber </div>
+        <h1 className=" font-bold text-2xl">{price}</h1>
+        <div>{name}</div>
         <div className=" flex text-2xls gap-4">
           <button className=" p-2 rounded-full bg-white border-solid border-gray-400">
             -
