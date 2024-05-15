@@ -1,7 +1,7 @@
 function NavBar() {
   return (
     <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
-      <ul className="flex flex-wrap -mb-px">
+      <ul className="flex flex-nowrap -mb-px">
         <li className="me-2">
           <a
             href="#"
