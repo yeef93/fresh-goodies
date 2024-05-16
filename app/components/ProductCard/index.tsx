@@ -42,9 +42,10 @@ function ProductCard({ imageUrl, name, price }: ProductCardProps) {
 
   return (
     <>
-      <div className="rounded-md shadow-md p-4 flex flex-col overflow-hidden">
+      <div className="rounded-md shadow-md p-4 flex flex-col overflow-hidden bg-[#e5e5e5] hover:bg-white">
         <div
-          className="flex justify-center" onClick={handleModalOpen}
+          className="flex justify-center"
+          onClick={handleModalOpen}
           style={{ width: "200px", height: "200px" }}
         >
           <Image
@@ -58,23 +59,23 @@ function ProductCard({ imageUrl, name, price }: ProductCardProps) {
         </div>
         <h2 className="font-bold text-2xl text-center">${price}</h2>
         <div className="text-center">{name}</div>
-        <div className="flex justify-center gap-4 mt-4">
+        <div className="flex justify-center gap-2 mt-4">
           <button
             type="button"
-            className="p-3 items-center justify-center rounded-full outline-none border-2 hover:bg-black hover:text-white"
+            className="p-3 px-5 font-bold items-center justify-center rounded-full outline-none border-2 border-gray-300 hover:bg-black hover:text-white"
             onClick={decreaseKg}
           >
             -
           </button>
           <input
-            className="rounded-full w-16 text-center"
+            className="rounded-full w-24 text-center border-2 border-gray-300"
             placeholder="1 Kg"
             value={`${kg.toFixed(1)} Kg`}
             readOnly
           />
           <button
             type="button"
-            className="p-3 items-center justify-center rounded-full outline-none border-2 hover:bg-black hover:text-white"
+            className="p-3 px-5 font-bold items-center justify-center rounded-full outline-none border-2 border-gray-300 hover:bg-black hover:text-white"
             onClick={increaseKg}
           >
             +

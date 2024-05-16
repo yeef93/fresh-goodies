@@ -28,7 +28,7 @@ export default function Home() {
             activeCategory={activeCategory}
           />
         </div>
-        <div>
+        <div className=" p-10">
           <CartList />
         </div>
       </div>

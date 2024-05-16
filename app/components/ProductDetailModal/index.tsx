@@ -80,38 +80,48 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             height={400}
           />
         </div>
-        <h2 className="text-2xl font-bold text-center mt-4">
-          ${product.price}
+        <h2 className="text-2xl font-bold text-left mt-4 w-full">
+          {product.name}
         </h2>
-        <h3 className="text-sm font-semibold text-center mt-2">In 100 grams</h3>
-        <div className=" mt-5 flex flex-row p-3 border-2 rounded-lg justify-between gap-10">
-          <div className=" flex flex-col justify-center items-center">
+        <h3 className="text-sm font-semibold text-left mt-2 w-full">In 100 grams</h3>
+        <div className="mt-5 flex flex-row p-3 border-2 rounded-lg justify-between gap-10 w-full">
+          <div className="flex flex-col justify-center items-center w-1/3">
             <div>143</div>
-            <div className=" text-xs text-gray-500">calorie</div>
+            <div className="text-xs text-gray-500">calorie</div>
           </div>
-          <div>
+          <div className="flex flex-col justify-center items-center w-1/3">
             <div>6.5</div>
-            <div className=" text-xs text-gray-500">proteins</div>
+            <div className="text-xs text-gray-500">proteins</div>
           </div>
-          <div>
+          <div className="flex flex-col justify-center items-center w-1/3">
             <div>0.5</div>
-            <div className=" text-xs text-gray-500">fats</div>
+            <div className="text-xs text-gray-500">fats</div>
+          </div>
+          <div className="flex flex-col justify-center items-center w-1/3">
+            <div>29.9</div>
+            <div className="text-xs text-gray-500">carbs</div>
           </div>
         </div>
-        <div className=" mt-5 px- flex items-center justify-center gap-4 rounded-full border-2">
-          <button onClick={decreaseQuantity}>-</button>
-          <input
-            type="number"
-            value={quantity}
-            onChange={handleQuantityChange}
-            className="border px-2 py-1 border-none "
-            min={1}
-          />
-          <button onClick={increaseQuantity}>+</button>
+        <div className="flex items-center justify-center gap-4 w-full mt-5">
+          <div className="flex items-center justify-center border-2 rounded-full w-full max-w-sm">
+            <button className="pl-4" onClick={decreaseQuantity}>
+              -
+            </button>
+            <input
+              type="number"
+              value={quantity}
+              onChange={handleQuantityChange}
+              className="border-none px-2 py-1 text-center w-12"
+              min={1}
+            />
+            <button className="pr-4" onClick={increaseQuantity}>
+              +
+            </button>
+          </div>
         </div>
-        <div className=" mt-5 p-4 rounded-full bg-black text-white flex flex-row">
+        <div className="mt-5 p-4 rounded-full bg-black text-white flex flex-row justify-between w-full max-w-sm">
           <div>To cart</div>
-          <div>${product.price * quantity}</div>
+          <div>${(product.price * quantity).toFixed(2)}</div>
         </div>
       </div>
     </div>
