@@ -12,7 +12,7 @@ const Navbar: React.FC<NavbarProps> = ({ categories, activeCategory, setActiveCa
   if (!categories) return null; // Add this line to handle undefined categories
 
   return (
-    <div className="w-screen border-b border-gray-200">
+    <div className=" w-screen border-b border-gray-200">
       <div className="flex gap-2">
         <div
           onClick={() => setActiveCategory("")}

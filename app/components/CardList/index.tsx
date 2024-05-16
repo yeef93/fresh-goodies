@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Product } from "@/types/product";
 import {config} from '@/constants/url';
 
-import Card from "../Card";
+import Card from "../ProductCard";
 
 function CardList() {
   const [products, setProducts] = useState<Product[]>([]);
