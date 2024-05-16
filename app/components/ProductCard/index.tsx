@@ -50,7 +50,7 @@ function ProductCard({ imageUrl, name, price }: ProductCardProps) {
           <Image
             src={imageUrl}
             alt={name}
-            className="object-cover mix-blend-multiply bg-transparent"
+            className="object-cover mix-blend-multiply bg-transparent w-full aspect-square"
             width={200}
             height={200}
             layout="fixed"

@@ -98,7 +98,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className=" text-xs text-gray-500">fats</div>
           </div>
         </div>
-        <div className=" mt-5 px-4 flex items-center justify-center gap-4 rounded-full border-2">
+        <div className=" mt-5 px- flex items-center justify-center gap-4 rounded-full border-2">
           <button onClick={decreaseQuantity}>-</button>
           <input
             type="number"
