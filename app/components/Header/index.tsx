@@ -1,7 +1,7 @@
 function Header() {
   return (
     <header className=" flex justify-between bg-[#ffffff] pt-3 top-0">
-      <h1 className=" p-5 font-bold">Vegetable</h1>
+      <h1 className=" p-5 font-bold text-xl">Vegetable</h1>
       <div className=" flex items-center">
         <svg
           width="24"

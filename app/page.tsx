@@ -10,7 +10,7 @@ export default function Home() {
   const { products, categories, productGroup } = useProduct();
 
   return (
-    <main className="flex min-h-screen flex-col items-start justify-start p-10">
+    <main className="flex min-h-screen flex-col items-start justify-start">
       <Navbar
         categories={categories}
         activeCategory={activeCategory}

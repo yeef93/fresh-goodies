@@ -42,9 +42,9 @@ function ProductCard({ imageUrl, name, price }: ProductCardProps) {
 
   return (
     <>
-      <div className="rounded-md shadow-md p-4 flex flex-col overflow-hidden" onClick={handleModalOpen}>
+      <div className="rounded-md shadow-md p-4 flex flex-col overflow-hidden">
         <div
-          className="flex justify-center"
+          className="flex justify-center" onClick={handleModalOpen}
           style={{ width: "200px", height: "200px" }}
         >
           <Image

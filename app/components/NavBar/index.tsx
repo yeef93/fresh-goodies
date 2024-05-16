@@ -12,8 +12,8 @@ const Navbar: React.FC<NavbarProps> = ({ categories, activeCategory, setActiveCa
   if (!categories) return null; // Add this line to handle undefined categories
 
   return (
-    <div className=" w-screen border-b border-gray-200">
-      <div className="flex gap-2">
+    <div className=" w-screen border-b border-gray-200 px-5">
+      <div className="flex flex-wrap  gap-2">
         <div
           onClick={() => setActiveCategory("")}
           className={`px-4 text-nowrap ${!activeCategory ? 'font-bold border-b-2 border-gray-600' : ''}`}
