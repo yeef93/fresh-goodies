@@ -40,7 +40,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   return (
     <div
-      className="fixed bottom-0 left-0 w-full h-full flex items-center justify-center z-50"
+      className="fixed bottom-0 left-0 w-full h-full flex items-center justify-center z-50 overflow-hidden"
       style={modalStyles}
     >
       <div
@@ -76,8 +76,8 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             className="max-h-full max-w-full"
             layout="intrinsic"
             objectFit="contain"
-            width={400}
-            height={400}
+            width={350}
+            height={350}
           />
         </div>
         <h2 className="text-2xl font-bold text-left mt-4 w-full">

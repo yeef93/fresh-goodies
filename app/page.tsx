@@ -5,6 +5,7 @@ import useProduct from "@/hooks/useProduct";
 import Navbar from "@/app/components/NavBar";
 import Content from "@/app/components/Content";
 import CartList from "./components/CartList/index";
+import { CartProvider } from "./context/CartContext";
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState<string>("");
@@ -20,17 +21,19 @@ export default function Home() {
         />
       </div>
       <div className=" flex flex-row">
-        <div>
-          <Content
-            products={products}
-            categories={categories}
-            productGroup={productGroup}
-            activeCategory={activeCategory}
-          />
-        </div>
-        <div className=" p-10">
-          <CartList />
-        </div>
+        <CartProvider>
+          <div>
+            <Content
+              products={products}
+              categories={categories}
+              productGroup={productGroup}
+              activeCategory={activeCategory}
+            />
+          </div>
+          <div className=" p-10">
+            <CartList />
+          </div>
+        </CartProvider>
       </div>
     </main>
   );

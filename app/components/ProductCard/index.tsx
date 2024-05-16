@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import ProductDetailModal from "../ProductDetailModal";
+import { useCart } from "../../context/CartContext"; 
 
 interface ProductCardProps {
   imageUrl: string;
@@ -10,6 +11,7 @@ interface ProductCardProps {
 
 function ProductCard({ imageUrl, name, price }: ProductCardProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { addToCart } = useCart();
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -38,6 +40,17 @@ function ProductCard({ imageUrl, name, price }: ProductCardProps) {
 
   const pricePerKg = () => {
     setPrice(price * (kg * 10));
+  };
+
+  const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuantity = parseInt(event.target.value);
+    if (!isNaN(newQuantity) && newQuantity >= 1) {
+      setKg(newQuantity);
+    }
+  };
+
+  const handleAddToCart = () => {
+    addToCart(name, kg);
   };
 
   return (
