@@ -1,17 +1,16 @@
 import React from 'react';
 
-interface ProductDetail{
+interface ProductDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   product: {
     name: string;
     price: number;
-    description: string;
     imageUrl: string;
   };
 }
 
-const ProductDetailModal: React.FC<ProductDetail> = ({ isOpen, onClose, product }) => {
+const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ isOpen, onClose, product }) => {
   if (!isOpen) return null;
 
   return (
@@ -25,10 +24,9 @@ const ProductDetailModal: React.FC<ProductDetail> = ({ isOpen, onClose, product 
         </div>
         <h2 className="text-2xl font-bold text-center mt-4">${product.price}</h2>
         <h3 className="text-xl font-semibold text-center mt-2">{product.name}</h3>
-        <p className="text-gray-700 mt-2">{product.description}</p>
       </div>
     </div>
   );
 };
 
-export default ProductDetail;
+export default ProductDetailModal;
