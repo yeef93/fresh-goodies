@@ -13,7 +13,7 @@ function Card({
   return (
     <div className="flex flex-col shadow-md p-2 bg-[#f9f8f6] items-start">
       <div className="flex items-center">
-        <div>
+        <div className=" items-center justify-center">
           <Image
             src={imageUrl}
             alt={name}
