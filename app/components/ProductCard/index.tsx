@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import ProductDetailModal from "../ProductDetailModal";
-import { useCart } from "../../context/CartContext"; 
+import { useCart } from "../../context/CartContext";
 
 interface ProductCardProps {
   imageUrl: string;
   name: string;
-  price: number;
+  price: number; // price per gram
+  initialWeight: number; // initial weight in grams
+  increment: number; // increment in grams
 }
 
-function ProductCard({ imageUrl, name, price }: ProductCardProps) {
+function ProductCard({ imageUrl, name, price, initialWeight, increment }: ProductCardProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { addToCart } = useCart();
+  const { addToCart, removeFromCart } = useCart();
+
+  const initialKg = initialWeight / 1000; // convert initial weight from grams to kg
+  const [kg, setKg] = useState<number>(initialKg); // initial weight in kg
+  const [totalPrice, setTotalPrice] = useState<number>(price * initialWeight); // initial total price
+
+  useEffect(() => {
+    setTotalPrice(price * kg * 1000); // update total price when kg changes
+  }, [kg, price]);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -21,36 +31,29 @@ function ProductCard({ imageUrl, name, price }: ProductCardProps) {
     setIsModalOpen(false);
   };
 
-  const [kg, setKg] = useState<number>(1);
-  const [priceBuy, setPrice] = useState<number>(price);
-
   const increaseKg = () => {
-    if (kg < 10) {
-      setKg(kg + 0.1);
-    } else if (kg < 1000) {
-      setKg(kg + 1);
-    }
+    const newKg = Math.round((kg + increment / 1000) * 10) / 10; // rounding to one decimal place
+    setKg(newKg);
+    addToCart({ name, weight: newKg * 1000, price: price * newKg * 1000, imageUrl });
   };
 
   const decreaseKg = () => {
-    if (kg > 0) {
-      setKg(kg - 0.1);
+    if (kg > increment / 1000) {
+      const newKg = Math.round((kg - increment / 1000) * 10) / 10; // ensuring kg doesn't go below increment value
+      setKg(newKg);
+      if (newKg > 0) {
+        addToCart({ name, weight: newKg * 1000, price: price * newKg * 1000, imageUrl });
+      } else {
+        removeFromCart({ name, weight: newKg * 1000, price: price * newKg * 1000, imageUrl });
+      }
     }
-  };
-
-  const pricePerKg = () => {
-    setPrice(price * (kg * 10));
   };
 
   const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuantity = parseInt(event.target.value);
-    if (!isNaN(newQuantity) && newQuantity >= 1) {
+    const newQuantity = parseFloat(event.target.value);
+    if (!isNaN(newQuantity) && newQuantity >= increment / 1000) {
       setKg(newQuantity);
     }
-  };
-
-  const handleAddToCart = () => {
-    addToCart(name, kg);
   };
 
   return (
@@ -70,7 +73,7 @@ function ProductCard({ imageUrl, name, price }: ProductCardProps) {
             layout="fixed"
           />
         </div>
-        <h2 className="font-bold text-2xl text-center">${price}</h2>
+        <h2 className="font-bold text-2xl text-center">${totalPrice.toFixed(2)}</h2>
         <div className="text-center">{name}</div>
         <div className="flex justify-center gap-2 mt-4">
           <button
@@ -84,6 +87,7 @@ function ProductCard({ imageUrl, name, price }: ProductCardProps) {
             className="rounded-full w-24 text-center border-2 border-gray-300"
             placeholder="1 Kg"
             value={`${kg.toFixed(1)} Kg`}
+            onChange={handleQuantityChange}
             readOnly
           />
           <button

@@ -37,6 +37,8 @@ function Content({
                   imageUrl={item.imageUrl}
                   name={item.name}
                   price={item.price}
+                  initialWeight={item.weight}
+                  increment={item.metadata.increment}
                 />
               ))}
             </div>
@@ -49,10 +51,12 @@ function Content({
         <div className=" px-4 grid grid-cols-2 md:grid-cols-4 gap-2 mt-10">
           {finalProduct.map((item, index) => (
             <ProductCard
-              key={index}
-              imageUrl={item.imageUrl}
-              name={item.name}
-              price={item.price}
+            key={index}
+            imageUrl={item.imageUrl}
+            name={item.name}
+            price={item.price}
+            initialWeight={item.weight}
+            increment={item.metadata.increment}
             />
           ))}
         </div>
