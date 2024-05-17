@@ -1,20 +1,37 @@
 import React from "react";
 import { useCart } from "../../context/CartContext";
 import Image from "next/image";
+import shipping from "@/public/assets/shipping.png";
 
 const CartList = () => {
   const { cart } = useCart();
+  const total = cart.items.reduce((acc, item) => acc + item.price, 0);
+  const percentageComplete = Math.min((total / 15) * 100, 100);
 
   return (
-    <div className="p-4">
+    <div className="rounded-md p-4 bg-[#e5e5e5]">
+      <div className="mb-4">
+        <Image
+          src={shipping}
+          alt="shipping"
+          className="object-cover mix-blend-multiply bg-transparent"
+          width={80}
+          height={80}
+          layout="fixed"
+        />
+        <div>Before free shipping</div>
+        <div className="mt-4 h-2 bg-gray-300 rounded-full">
+          <div
+            className="h-full bg-green-500 rounded-full"
+            style={{ width: `${percentageComplete}%` }}
+          ></div>
+        </div>
+      </div>
       {cart.items.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         cart.items.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-row p-5 rounded-md border-2 mb-4"
-          >
+          <div key={index} className="flex flex-row p-5 rounded-md mb-4">
             <Image
               src={item.imageUrl}
               alt={item.name}
@@ -36,7 +53,7 @@ const CartList = () => {
                 <input
                   className="w-24 text-center"
                   value={`${(item.weight / 1000).toFixed(2)} kg`}
-                  readOnly 
+                  readOnly
                 />
                 <button
                   type="button"
